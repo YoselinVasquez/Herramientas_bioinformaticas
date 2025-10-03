@@ -1,24 +1,21 @@
-# ANÁLISIS GÉNICO DE ENTEROBACTERIAS RESISTENTES A ANTIBIÓTICOS BETALACTÁMICOS DE AMPLIO ESPECTRO Y CARBAPENÉMICOS AISLADAS DE LA FAUNA LOCAL Y AGUA DE LA LAGUNA YARINACOCHA, UCAYALI
+# 
 ## YOSELIN EDITT VASQUEZ CASTRO
 ## Asesor: DR. ABELARDO LENIN MATURRANO HERNANDEZ
 
 
-## Introducción
+## I. Introducción
 El problema de la resistencia a los antibióticos ha sido uno de los mayores retos para la salud pública. En el 2019, la Organización Mundial de Salud documentó 1.27 millones de muertes asociadas directamente a la resistencia bacteriana, y si no se toman medidas urgentes será la principal causa de muerte para el año 2050. La OMS en el 2024, publicó una lista de patógenos prioritarios indicando que las enterobacterias resistentes a betalactámicos y carbapenémicos son de prioridad crítica.
 Gran parte de la población dedicada a la agricultura utiliza el estiércol animal como fertilizante, especialmente aquellos tratados con antibióticos, lo que introduce bacterias con genes de resistencia en el suelo y cultivos, y estos podría llegar a los seres humanos por medio de los alimentos mal lavados (Zhang et al., 2019). Así mismo, diferentes vertederos de residuos sólidos urbanos concentran una amplia presencia de antibióticos y genes de resistencia, y estos vertederos pueden liberarse a lugares cercanos como cuerpos de agua o suelos (Wang et al., 2019). Las principales fuentes contaminantes son humanas, como las aguas residuales, producción intensiva de animales, descargas hospitalarias, escorrentía de acuicultura (Zainab et al., 2020).
-Los genes codificantes de ß-lactamasas de espectro extendido (BLEE) generan resistencia a la mayoría de los betalactámicos, aumentando la tasa de mortalidad, ya que están asociados a multirresistencia (Oliver & Cantón, 2004), cuando un tratamiento fracasa por la presencia de BLEE se usa carbapenémicos, los cuales se consideran tratamientos de última instancia (Meletis, 2016); las carbapenemasas hidrolizan a los antibióticos más potentes, los carbapenémicos y muchas otras ß-lactamasas (Jeon et al, 2015). Por otro lado, los animales pueden transmitir enterobacterias multirresistentes a las personas, un análisis sobre klebsiella spp. realizado en Perú, determinó que perros y gatos con cuadros clínicos presentaban genes para carbapenemasas (Cruz, 2023), lo cual representa un riesgo para el desarrollo de resistencia activa, y transmisión a los humanos. Marin en el año 2012, determinó que el agua de la laguna Yarinacocha no es apta para el uso recreacional por presentar alta contaminación y concentración de microorganismos como E.coli y Salmonella spp. fuera de los estándares nacionales.
-En adición a lo señalado, la defensoría del Pueblo en Ucayali (2023) indicó que el Hospital Amazónico de Yarinacocha no cuenta con una planta de tratamiento de aguas residuales, y estas discurren por la vía pública con destino a la laguna Yarinacocha sin ningún tratamiento previo, asimismo, el ministerio de desarrollo agrario y riego, a través de la Autoridad Nacional del Agua (2020), identificó en la zona “La Restinga de Yarinacocha”, material de residuos domésticos de la población y presencia de lavado de ropa en las orillas, se identificó también en las localidades de San José y San Juan, desagües domésticos que fueron canalizados por la propia población y estas iban directamente a quebradas que tienen contacto directo con la laguna.
-La laguna Yarinacocha, es uno de los cuerpos de agua más importantes de la ciudad de Pucallpa. Los pobladores del distrito indicaron que, al no contar con un sistema de abastecimiento continuo de agua, hacen uso y consumo del agua de la laguna (Talavera, 2018). La Municipalidad distrital de Yarinacocha (2016) indicó que los asentamientos humanos, centros poblados, caseríos, comunicades nativas, son afectados directamente por la contaminación de la laguna, ya que utilizan el agua para uso doméstico. Una de las principales actividades económicas es la pesquería, donde el comercio de los productos se da a nivel regional, el turismo es otra actividad importante, donde miles de personas se congregan en la laguna por la fiesta de “San Juan” (Municipalidad distrital de Yarinacocha, 2023), lo que causa que las personas estén en contacto directo con el agua. En este contexto, se formula la siguiente pregunta.
-¿Cómo impactan las actividades antropogénicas en la presencia de bacterias portadoras de genes codificantes de BLEE y carbapenemasas en la laguna Yarinacocha y en la fauna local?
+
+
+## II. Antecedentes
 
 ## Hipótesis y Objetivos
 ### Hipótesis
-Genes de resistencia a antibióticos betalactámicos de amplio espectro y carbapenémicos están presentes en Enterobacterias aisladas de muestras de un ambiente con impacto antropogénico (laguna Yarinacocha), así como en muestras fecales de animales domésticos y silvestres que habitan en sus proximidades.
+
 
 ### Objetivos
 ### Objetivo General
-Caracterizar genes de resistencia a antibióticos betalactámicos de amplio espectro y carbapenémicos procedentes en Enterobacterias aisladas de muestras de ambiente con impacto antropogénico (laguna Yarinacocha), así como de animales domésticos y silvestres que habitan en sus proximidades.
+
 ### Objetivos Específicos
-- Evaluar a nivel fenotípico la resistencia a antibióticos de enterobacterias resistentes a betalactámicos de amplio espectro (ceftriaxona) y carbapenemicos (imipenem) aisladas de la laguna Yarinacocha, animales domésticos y silvestres que habitan sus proximidades.
-- Caracterizar a nivel génico la resistencia a antibióticos de enterobacterias resistentes a betalactámicos de amplio espectro (ceftriaxona) y carbapenemicos (imipenem) aisladas de la laguna Yarinacocha, animales domésticos y silvestres que habitan sus proximidades.
-- Evaluar la diversidad de bacterias en muestras de agua de la laguna Yarinacocha mediante análisis metabarcoding del gen 16S rRNA.
+
