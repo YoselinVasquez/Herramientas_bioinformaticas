@@ -9,8 +9,7 @@
 ### Objetivos
 ### Objetivo General
 ### Caracterizar genes de resistencia a antibióticos betalactámicos de amplio espectro y carbapenémicos procedentes en Enterobacterias aisladas de muestras de ambiente con impacto antropogénico (laguna Yarinacocha), así como de animales domésticos y silvestres que habitan en sus proximidades.
-
-## Objetivos Específicos
-### Evaluar a nivel fenotípico la resistencia a antibióticos de enterobacterias resistentes a betalactámicos de amplio espectro (ceftriaxona) y carbapenemicos (imipenem) aisladas de la laguna Yarinacocha, animales domésticos y silvestres que habitan sus proximidades.
-### Caracterizar a nivel génico la resistencia a antibióticos de enterobacterias resistentes a betalactámicos de amplio espectro (ceftriaxona) y carbapenemicos (imipenem) aisladas de la laguna Yarinacocha, animales domésticos y silvestres que habitan sus proximidades.
-### Evaluar la diversidad de bacterias en muestras de agua de la laguna Yarinacocha mediante análisis metabarcoding del gen 16S rRNA.
+### Objetivos Específicos
+### - Evaluar a nivel fenotípico la resistencia a antibióticos de enterobacterias resistentes a betalactámicos de amplio espectro (ceftriaxona) y carbapenemicos (imipenem) aisladas de la laguna Yarinacocha, animales domésticos y silvestres que habitan sus proximidades.
+### - Caracterizar a nivel génico la resistencia a antibióticos de enterobacterias resistentes a betalactámicos de amplio espectro (ceftriaxona) y carbapenemicos (imipenem) aisladas de la laguna Yarinacocha, animales domésticos y silvestres que habitan sus proximidades.
+### - Evaluar la diversidad de bacterias en muestras de agua de la laguna Yarinacocha mediante análisis metabarcoding del gen 16S rRNA.
