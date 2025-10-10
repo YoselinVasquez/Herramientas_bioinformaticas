@@ -3,6 +3,7 @@
 ## Resumen
 La resistencia antimicrobiana representa una amenaza creciente para la salud pública. En este estudio se evaluó la presencia de genes de resistencia a antibióticos carbapenémicos presentes en enterobacterias aisladas en muestras clínicas de pacientes y muestras ambientales recolectadas de un hospital ubicado al norte de Londres, Reino Unido. 
 Para la obtención de los aislados se utilizó el test NG Test CARBA 5, seleccionando únicamente aquellas muestras positivas para genes OXA‑48‑like, estas luego fueron secuenciadas mediante la tecnología Oxford Nanopore. 
+
 Las muestras ambientales fueron cultivadas para aislar enterobacterias resistentes a carbapenémicos, y algunos de estos aislados también fueron secuenciados. Finalmente, se realizó la comparación genética entre los aislados clínicos y ambientales para determinar si compartían linajes clonados, genes de resistencia y analizar los plásmidos que los portan, para identificar posibles rutas de transmisión.  
 
 
