@@ -22,4 +22,7 @@ racon -t 4 SRR.trim.fastq.gz overlaps3.paf SRR.racon1.fasta > SRR.racon2.fasta ;
 # Seciencias consenso: medaka
 medaka_consensus -i SRR.trim.fastq.gz -d SRR.racon2.fasta -o medaka_SRR -t 4 ;
 
+# Evaluación de calidad del emsamblado: QUAST
+quast.py -o quast_results -m 0 consensus.fasta
+
 
