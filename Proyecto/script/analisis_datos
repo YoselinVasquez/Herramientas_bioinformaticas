@@ -30,7 +30,8 @@ flye -o ERR13298088.genoma --nano-raw ERR13298088.trim.fastq.gz --threads 8 ;
 flye -o ERR13298082.genoma --nano-raw ERR13298082.trim.fastq.gz --threads 8 ;
 ls -lh ;
 
-# Polishing: minimap2 + raconminimap2 -x ava-ont -t 8 ERR13298057.genoma/assembly.fasta ERR13298057.trim.fastq.gz > overlaps1.paf ;
+# Polishing: minimap2 + racon
+minimap2 -x ava-ont -t 8 ERR13298057.genoma/assembly.fasta ERR13298057.trim.fastq.gz > overlaps1.paf ;
 racon -t 8 ERR13298057.trim.fastq.gz overlaps1.paf ERR13298057.genoma/assembly.fasta > ERR13298057.racon1.fasta ;
 minimap2 -x ava-ont -t 8 ERR13298048.genoma/assembly.fasta ERR13298048.trim.fastq.gz > overlaps2.paf ;
 racon -t 8 ERR13298048.trim.fastq.gz overlaps2.paf ERR13298048.genoma/assembly.fasta > ERR13298048.racon1.fasta ;
@@ -53,7 +54,7 @@ minimap2 -x ava-ont -t 8 ERR13298082.racon1.fasta ERR13298082.trim.fastq.gz > ov
 racon -t 8 ERR13298082.trim.fastq.gz overlaps10.paf ERR13298082.racon1.fasta > ERR13298082.racon2.fasta ;
 
 
-# Seciencias consenso: medaka
+# Secuencias consenso: medaka
 medaka_consensus -i ERR13298057.trim.fastq.gz -d ERR13298057.racon2.fasta -o medaka_ERR13298057 -t 8 ;
 medaka_consensus -i ERR13298048.trim.fastq.gz -d ERR13298048.racon2.fasta -o medaka_ERR13298048 -t 8 ;
 medaka_consensus -i ERR13298122.trim.fastq.gz -d ERR13298122.racon2.fasta -o medaka_ERR13298122 -t 8 ;
