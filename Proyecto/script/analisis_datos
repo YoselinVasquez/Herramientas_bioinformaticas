@@ -1,4 +1,4 @@
-# Inspeccionar longitudes de reads
+# Inspección de longitud de reads
 zcat ERR13298057.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
 zcat ERR13298048.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
 zcat ERR13298122.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
