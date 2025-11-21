@@ -1,1 +1,25 @@
+# Inspeccionar las longitudes de los reads
+zcat SRR.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 20
+
+# Ver calidad de datos: nanoplot
+NanoPlot -t 2 -o SRR_QC --fastq SRR.fastq.gz
+
+# Filtrar datos: nanofilt
+gunzip -c SRR.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > SRR.trim.fastq.gz ;
+ls -lh ;
+
+# Ensamblado de lecturas: flye
+flye -o SRR.genoma --nano-raw SRR.trim.fastq.gz --threads 4 ;
+ls -lh ;
+
+# Polishing: minimap2 + racon
+minimap2 -x ava-ont -t 4 SRR.genoma/assembly.fasta SRR.trim.fastq.gz > overlaps1.paf ;
+racon -t 4 SRR.trim.fastq.gz overlaps1.paf SRR.genoma/assembly.fasta > SRR.racon1.fasta ;
+
+minimap2 -x ava-ont -t 4 SRR.racon1.fasta SRR.trim.fastq.gz > overlaps3.paf ;
+racon -t 4 SRR.trim.fastq.gz overlaps3.paf SRR.racon1.fasta > SRR.racon2.fasta ;
+
+# Seciencias consenso: medaka
+medaka_consensus -i SRR.trim.fastq.gz -d SRR.racon2.fasta -o medaka_SRR -t 4 ;
+
 
