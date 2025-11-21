@@ -68,7 +68,7 @@ quast.py -o quast_ERR13298088 -m 0 medaka_ERR13298088/consensus.fasta
 quast.py -o quast_ERR13298082 -m 0 medaka_ERR13298082/consensus.fasta
 
 
-# Ver genes de resistencia
+# Ver genes de resistencia: AMRFinderPlus
 amrfinder -n medaka_ERR13298057/consensus.fasta -o amrfinder_out_57.tsv
 amrfinder -n medaka_ERR13298048/consensus.fasta -o amrfinder_out_48.tsv
 amrfinder -n medaka_ERR13298122/consensus.fasta -o amrfinder_out_57.tsv
