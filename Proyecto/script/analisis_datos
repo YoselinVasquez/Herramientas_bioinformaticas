@@ -1,28 +1,79 @@
 # Inspeccionar las longitudes de los reads
-zcat SRR.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 20
+zcat ERR13298057.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
+zcat ERR13298048.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
+zcat ERR13298122.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
+zcat ERR13298088.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
+zcat ERR13298082.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
+
 
 # Ver calidad de datos: nanoplot
-NanoPlot -t 2 -o SRR_QC --fastq SRR.fastq.gz
+NanoPlot -t 8 -o ERR13298057_QC --fastq ERR13298057.fastq.gz
+NanoPlot -t 8 -o ERR13298048_QC --fastq ERR13298048.fastq.gz
+NanoPlot -t 8 -o ERR13298122_QC --fastq ERR13298122.fastq.gz
+NanoPlot -t 8 -o ERR13298088_QC --fastq ERR13298088.fastq.gz
+NanoPlot -t 8 -o ERR13298082_QC --fastq ERR13298082.fastq.gz
+
 
 # Filtrar datos: nanofilt
-gunzip -c SRR.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > SRR.trim.fastq.gz ;
+gunzip -c ERR13298057.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298057.trim.fastq.gz ;
+gunzip -c ERR13298048.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298048.trim.fastq.gz ;
+gunzip -c ERR13298122.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298122.trim.fastq.gz ;
+gunzip -c ERR13298088.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298088.trim.fastq.gz ;
+gunzip -c ERR13298082.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298082.trim.fastq.gz ;
 ls -lh ;
 
 # Ensamblado de lecturas: flye
-flye -o SRR.genoma --nano-raw SRR.trim.fastq.gz --threads 4 ;
+flye -o ERR13298057.genoma --nano-raw ERR13298057.trim.fastq.gz --threads 8 ;
+flye -o ERR13298048.genoma --nano-raw ERR13298048.trim.fastq.gz --threads 8 ;
+flye -o ERR13298122.genoma --nano-raw ERR13298122.trim.fastq.gz --threads 8 ;
+flye -o ERR13298088.genoma --nano-raw ERR13298088.trim.fastq.gz --threads 8 ;
+flye -o ERR13298082.genoma --nano-raw ERR13298082.trim.fastq.gz --threads 8 ;
 ls -lh ;
 
-# Polishing: minimap2 + racon
-minimap2 -x ava-ont -t 4 SRR.genoma/assembly.fasta SRR.trim.fastq.gz > overlaps1.paf ;
-racon -t 4 SRR.trim.fastq.gz overlaps1.paf SRR.genoma/assembly.fasta > SRR.racon1.fasta ;
+# Polishing: minimap2 + raconminimap2 -x ava-ont -t 8 ERR13298057.genoma/assembly.fasta ERR13298057.trim.fastq.gz > overlaps1.paf ;
+racon -t 8 ERR13298057.trim.fastq.gz overlaps1.paf ERR13298057.genoma/assembly.fasta > ERR13298057.racon1.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298048.genoma/assembly.fasta ERR13298048.trim.fastq.gz > overlaps2.paf ;
+racon -t 8 ERR13298048.trim.fastq.gz overlaps2.paf ERR13298048.genoma/assembly.fasta > ERR13298048.racon1.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298122.genoma/assembly.fasta ERR13298122.trim.fastq.gz > overlaps3.paf ;
+racon -t 8 ERR13298122.trim.fastq.gz overlaps3.paf ERR13298122.genoma/assembly.fasta > ERR13298122.racon1.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298088.genoma/assembly.fasta ERR13298088.trim.fastq.gz > overlaps4.paf ;
+racon -t 8 ERR13298088.trim.fastq.gz overlaps4.paf ERR13298088.genoma/assembly.fasta > ERR13298088.racon1.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298082.genoma/assembly.fasta ERR13298082.trim.fastq.gz > overlaps5.paf ;
+racon -t 8 ERR13298082.trim.fastq.gz overlaps5.paf ERR13298082.genoma/assembly.fasta > ERR13298082.racon1.fasta ;
 
-minimap2 -x ava-ont -t 4 SRR.racon1.fasta SRR.trim.fastq.gz > overlaps3.paf ;
-racon -t 4 SRR.trim.fastq.gz overlaps3.paf SRR.racon1.fasta > SRR.racon2.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298057.racon1.fasta ERR13298057.trim.fastq.gz > overlaps6.paf ;
+racon -t 8 ERR13298057.trim.fastq.gz overlaps6.paf ERR13298057.racon1.fasta > ERR13298057.racon2.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298048.racon1.fasta ERR13298048.trim.fastq.gz > overlaps7.paf ;
+racon -t 8 ERR13298048.trim.fastq.gz overlaps7.paf ERR13298048.racon1.fasta > ERR13298048.racon2.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298122.racon1.fasta ERR13298122.trim.fastq.gz > overlaps8.paf ;
+racon -t 8 ERR13298122.trim.fastq.gz overlaps8.paf ERR13298122.racon1.fasta > ERR13298122.racon2.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298088.racon1.fasta ERR13298088.trim.fastq.gz > overlaps9.paf ;
+racon -t 8 ERR13298088.trim.fastq.gz overlaps9.paf ERR13298088.racon1.fasta > ERR13298088.racon2.fasta ;
+minimap2 -x ava-ont -t 8 ERR13298082.racon1.fasta ERR13298082.trim.fastq.gz > overlaps10.paf ;
+racon -t 8 ERR13298082.trim.fastq.gz overlaps10.paf ERR13298082.racon1.fasta > ERR13298082.racon2.fasta ;
+
 
 # Seciencias consenso: medaka
-medaka_consensus -i SRR.trim.fastq.gz -d SRR.racon2.fasta -o medaka_SRR -t 4 ;
+medaka_consensus -i ERR13298057.trim.fastq.gz -d ERR13298057.racon2.fasta -o medaka_ERR13298057 -t 8 ;
+medaka_consensus -i ERR13298048.trim.fastq.gz -d ERR13298048.racon2.fasta -o medaka_ERR13298048 -t 8 ;
+medaka_consensus -i ERR13298122.trim.fastq.gz -d ERR13298122.racon2.fasta -o medaka_ERR13298122 -t 8 ;
+medaka_consensus -i ERR13298088.trim.fastq.gz -d ERR13298088.racon2.fasta -o medaka_ERR13298088 -t 8 ;
+medaka_consensus -i ERR13298082.trim.fastq.gz -d ERR13298082.racon2.fasta -o medaka_ERR13298082 -t 8 ;
 
 # Evaluación de calidad del emsamblado: QUAST
-quast.py -o quast_results -m 0 consensus.fasta
+quast.py -o quast_ERR13298057 -m 0 medaka_ERR13298057/consensus.fasta
+quast.py -o quast_ERR13298048 -m 0 medaka_ERR13298048/consensus.fasta
+quast.py -o quast_ERR13298122 -m 0 medaka_ERR13298122/consensus.fasta
+quast.py -o quast_ERR13298088 -m 0 medaka_ERR13298088/consensus.fasta
+quast.py -o quast_ERR13298082 -m 0 medaka_ERR13298082/consensus.fasta
+
+
+# Ver genes de resistencia
+amrfinder -n medaka_ERR13298057/consensus.fasta -o amrfinder_out_57.tsv
+amrfinder -n medaka_ERR13298048/consensus.fasta -o amrfinder_out_48.tsv
+amrfinder -n medaka_ERR13298122/consensus.fasta -o amrfinder_out_57.tsv
+amrfinder -n medaka_ERR13298088/consensus.fasta -o amrfinder_out_48.tsv
+amrfinder -n medaka_ERR13298082/consensus.fasta -o amrfinder_out_57.tsv
+
 
 
