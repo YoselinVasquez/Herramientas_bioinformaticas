@@ -24,4 +24,4 @@ Todos los genomas ensamblados serán sometidos a programas bioinformáticos. Se 
 -	Plásmidos: PlasmidFinder 2.1
 -	La secuencia de plásmidos será reconstruida usando la plataforma Mob-suite  
 -	Genes de Virulencia: VirulenceFinder 2.0 y VirulenceFactorDataBase (VFDB) 
-
+-	Filogrupos: EzClermont 
