@@ -13,7 +13,6 @@ Caracterizar genes de resistencia a antibióticos betalactámicos de amplio espe
 ### Objetivos específicos
 • Evaluar a nivel fenotípico la resistencia a antibióticos de enterobacterias resistentes a betalactámicos de amplio espectro y carbapenemicos aisladas de la laguna Yarinacocha, animales domésticos y silvestres que habitan sus proximidades.
 • Caracterizar a nivel génico la resistencia a antibióticos de enterobacterias resistentes a betalactámicos de amplio espectro y carbapenemicos aisladas de la laguna Yarinacocha, animales domésticos y silvestres que habitan en sus proximidades.
-• Evaluar la diversidad de bacterias en muestras de agua de la laguna Yarinacocha mediante análisis metabarcoding del gen 16S rRNA.
 
 ### Muestras
 Se tomarán muestras de agua en seis puntos diferentes de la laguna Yarinacocha, tres puntos en la zona periférica del agua de la laguna, separadas por 50 m cada una, tres puntos en el centro de la laguna separadas también por 50 m cada una, y la distancia entre el punto de la orilla y el centro será de 150 metros; se tomará 1 litro de agua por punto. Se tomarán también muestras de heces frescas de mamíferos de la fauna local y aves silvestres, así mismo se tomarán muestras de la superficie de peces comercializados ubicados en el distrito de Yarinacocha, para determinar la presencia de bacterias con genes de resistencia.
