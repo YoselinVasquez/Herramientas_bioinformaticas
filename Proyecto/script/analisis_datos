@@ -107,11 +107,13 @@ mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298082/consensus.fasta \
 ## 2. Entrar a Default webpage accessible to all users worldwide
 ## 3. Download
 ## 4. Descargar DNA sequences of full dataset
+## 5. Descargar VFs description files.
 
-## Crear formatos FASTA del archivo descargado
+## Descomprimir archivos:
 gzip -d VFDB_setB_nt.fas.gz 
+gzip -d VFs.xls.gz
 
-# 
+# Encontrar genes de virulencia:
 for dir in ~/Documentos/bioinfo/medaka_ERR*; do
     echo "Procesando $dir..."
     mkdir -p "$dir/VFDB_nt_out"
@@ -123,7 +125,15 @@ for dir in ~/Documentos/bioinfo/medaka_ERR*; do
     > "$dir/VFDB_nt_out/VFDB_nt_hits.tsv"
 done
 
-#  Limpiar el archivo de VFDB out con:
+# Trasformar el excel VFs.xls en extensión .xlsx
+
+# Crear archivo VFs.csv:
+libreoffice --headless --convert-to "csv:Text - txt - csv (StarCalc):59,34,76,1" VFs.xlsx
+
+# Crear archivo VFs.tsv
+sed 's/,/\t/g' VFs.csv > VFs.tsv
+
+#  Limpiar el archivo VFDB_nt_hits.tsv (quitar paréntesis, caracteres extra y organizar en columnas) con:
 for d in medaka_ERR13298048 medaka_ERR13298057 medaka_ERR13298082 medaka_ERR13298088 medaka_ERR13298122; do   awk -F'\t' '
   {
     split($2,a,"(");
@@ -131,7 +141,7 @@ for d in medaka_ERR13298048 medaka_ERR13298057 medaka_ERR13298082 medaka_ERR1329
   }
   ' $d/VFDB_nt_out/VFDB_nt_hits.tsv; done > VFDB_all_clean.tsv
 
-# Extraer el ID limpio de VFG.
+# Extraer el ID limpio de VFG:
 grep '^>' VFDB_setB_nt.fas | sed 's/>//' | awk '
 {
     # extraer VFG ID limpio
