@@ -167,6 +167,21 @@ sort -k1,1 VFDB_setB_id_mapping_clean.tsv > VFDB_setB_id_mapping_sorted.tsv
 # Hacer el join usando VFG ID:
 join -t $'\t' -1 3 -2 1 VFDB_all_clean_sorted.tsv VFDB_setB_id_mapping_sorted.tsv > VFDB_virulencia_mapeada.tsv
 
+# EZCLERMONT
+## Determinar los Filogrupos: EzClermont
+echo -e "Muestra\tFilogrupo" > filogrupos_ezclermont.tsv
+
+for d in medaka_ERR*/; do
+    if [ -f "$d/consensus.fasta" ]; then
+        fg=$(ezclermont "$d/consensus.fasta" 2>&1 \
+             | grep "Clermont type" \
+             | sed 's/.*Clermont type: //')
+        echo -e "${d%/}\t$fg" >> filogrupos_ezclermont.tsv
+    fi
+done
+
+
+
 
 
 
