@@ -5,16 +5,16 @@ zcat ERR13298122.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq
 zcat ERR13298088.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
 zcat ERR13298082.fastq.gz | grep -n "length" | cut -f2 -d'=' | sort -r -n | uniq | head -n 10
 
-
-# Ver calidad de datos: nanoplot
+# NANOPLOT
+## Ver calidad de datos: nanoplot
 NanoPlot -t 8 -o ERR13298057_QC --fastq ERR13298057.fastq.gz
 NanoPlot -t 8 -o ERR13298048_QC --fastq ERR13298048.fastq.gz
 NanoPlot -t 8 -o ERR13298122_QC --fastq ERR13298122.fastq.gz
 NanoPlot -t 8 -o ERR13298088_QC --fastq ERR13298088.fastq.gz
 NanoPlot -t 8 -o ERR13298082_QC --fastq ERR13298082.fastq.gz
 
-
-# Filtrar datos: nanofilt
+NANOFILT
+## Filtrar datos: nanofilt
 gunzip -c ERR13298057.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298057.trim.fastq.gz ;
 gunzip -c ERR13298048.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298048.trim.fastq.gz ;
 gunzip -c ERR13298122.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298122.trim.fastq.gz ;
@@ -22,7 +22,8 @@ gunzip -c ERR13298088.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | 
 gunzip -c ERR13298082.fastq.gz | NanoFilt --logfile nanofilt.log -l 500 -q 10 | gzip > ERR13298082.trim.fastq.gz ;
 ls -lh ;
 
-# Ensamblado de lecturas: flye
+# FLYE
+## Ensamblado de lecturas: flye
 flye -o ERR13298057.genoma --nano-raw ERR13298057.trim.fastq.gz --threads 8 ;
 flye -o ERR13298048.genoma --nano-raw ERR13298048.trim.fastq.gz --threads 8 ;
 flye -o ERR13298122.genoma --nano-raw ERR13298122.trim.fastq.gz --threads 8 ;
@@ -30,7 +31,8 @@ flye -o ERR13298088.genoma --nano-raw ERR13298088.trim.fastq.gz --threads 8 ;
 flye -o ERR13298082.genoma --nano-raw ERR13298082.trim.fastq.gz --threads 8 ;
 ls -lh ;
 
-# Polishing: minimap2 + racon
+# POLISHING
+## Polishing: minimap2 + racon
 minimap2 -x ava-ont -t 8 ERR13298057.genoma/assembly.fasta ERR13298057.trim.fastq.gz > overlaps1.paf ;
 racon -t 8 ERR13298057.trim.fastq.gz overlaps1.paf ERR13298057.genoma/assembly.fasta > ERR13298057.racon1.fasta ;
 minimap2 -x ava-ont -t 8 ERR13298048.genoma/assembly.fasta ERR13298048.trim.fastq.gz > overlaps2.paf ;
@@ -53,28 +55,61 @@ racon -t 8 ERR13298088.trim.fastq.gz overlaps9.paf ERR13298088.racon1.fasta > ER
 minimap2 -x ava-ont -t 8 ERR13298082.racon1.fasta ERR13298082.trim.fastq.gz > overlaps10.paf ;
 racon -t 8 ERR13298082.trim.fastq.gz overlaps10.paf ERR13298082.racon1.fasta > ERR13298082.racon2.fasta ;
 
-
-# Secuencias consenso: medaka
+# MEDAKA
+## Secuencias consenso: medaka
 medaka_consensus -i ERR13298057.trim.fastq.gz -d ERR13298057.racon2.fasta -o medaka_ERR13298057 -t 8 ;
 medaka_consensus -i ERR13298048.trim.fastq.gz -d ERR13298048.racon2.fasta -o medaka_ERR13298048 -t 8 ;
 medaka_consensus -i ERR13298122.trim.fastq.gz -d ERR13298122.racon2.fasta -o medaka_ERR13298122 -t 8 ;
 medaka_consensus -i ERR13298088.trim.fastq.gz -d ERR13298088.racon2.fasta -o medaka_ERR13298088 -t 8 ;
 medaka_consensus -i ERR13298082.trim.fastq.gz -d ERR13298082.racon2.fasta -o medaka_ERR13298082 -t 8 ;
 
-# Evaluación de calidad del emsamblado: QUAST
+QUAST
+## Evaluación de calidad del emsamblado: QUAST
 quast.py -o quast_ERR13298057 -m 0 medaka_ERR13298057/consensus.fasta
 quast.py -o quast_ERR13298048 -m 0 medaka_ERR13298048/consensus.fasta
 quast.py -o quast_ERR13298122 -m 0 medaka_ERR13298122/consensus.fasta
 quast.py -o quast_ERR13298088 -m 0 medaka_ERR13298088/consensus.fasta
 quast.py -o quast_ERR13298082 -m 0 medaka_ERR13298082/consensus.fasta
 
-
-# Ver genes de resistencia: AMRFinderPlus
+# AMRFinderPlus
+## Ver genes de resistencia: AMRFinderPlus
 amrfinder -n medaka_ERR13298057/consensus.fasta -o amrfinder_out_57.tsv
 amrfinder -n medaka_ERR13298048/consensus.fasta -o amrfinder_out_48.tsv
 amrfinder -n medaka_ERR13298122/consensus.fasta -o amrfinder_out_57.tsv
 amrfinder -n medaka_ERR13298088/consensus.fasta -o amrfinder_out_48.tsv
 amrfinder -n medaka_ERR13298082/consensus.fasta -o amrfinder_out_57.tsv
 
+PLASMIDFINDER 2.1
+## Ver si los genes de resistencia se encuentran en plásmidos: PlasmidFinder 2.1
+for dir in ~/Documentos/bioinfo/medaka_ERR*; do
+    echo "Procesando $dir..."
+    mkdir -p "$dir/plasmidfinder_out"
+    plasmidfinder.py -i "$dir/consensus.fasta" \
+    -o "$dir/plasmidfinder_out" \
+    -p ~/Documentos/bioinfo/plasmidfinder_db -t 0.95 -l 0.6 -x
 
+# MOB_SUITE
+## Reconstruir las secuencias de plásmidos: Mob-suite
+mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298057/consensus.fasta \
+-o ~/Documentos/bioinfo/medaka_ERR13298057/mob_recon_out
+mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298048/consensus.fasta \
+-o ~/Documentos/bioinfo/medaka_ERR13298048/mob_recon_out
+mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298122/consensus.fasta \
+-o ~/Documentos/bioinfo/medaka_ERR13298122/mob_recon_out
+mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298088/consensus.fasta \
+-o ~/Documentos/bioinfo/medaka_ERR13298088/mob_recon_out
+mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298082/consensus.fasta \
+-o ~/Documentos/bioinfo/medaka_ERR13298082/mob_recon_out
+
+# VFDB
+## Ver genes de virulencia: VirulenceFactorDataBase (VFDB)
+## 1. Entrar a http://www.mgc.ac.cn/VFs/
+## 2. Entrar a Default webpage accessible to all users worldwide
+## 3. Download
+## 4. Descargar DNA sequences of full dataset
+
+## Crear formatos FASTA del archivo descargado
+gzip -d VFDB_setB_nt.fas.gz 
+
+##  
 
