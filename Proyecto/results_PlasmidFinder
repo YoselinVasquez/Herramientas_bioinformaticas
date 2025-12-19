@@ -1,8 +1,0 @@
-Database	Plasmid	Identity	Query / Template length	Contig	Position in contig	Note	Accession number
-enterobacteriales	IncFIB(K)	97.7	564 / 560	contig_29	8824..9387		JN233704
-enterobacteriales	IncFIB(K)	98.93	560 / 560	contig_31	25358..25917		JN233704
-enterobacteriales	IncFII(K)	97.97	148 / 148	contig_16	25647..25794		CP000648
-enterobacteriales	IncFII(K)	95.95	148 / 148	contig_2	82418..82565		CP000648
-enterobacteriales	IncX5	100.0	576 / 576	contig_37	31238..31813		MF062700
-enterobacteriales	pKPC-CAV1321	100.0	596 / 596	contig_5	4857..5452		CP011611
-enterobacteriales	repB(R1701)	99.52	623 / 623	contig_30	2193..2815		CP039970
