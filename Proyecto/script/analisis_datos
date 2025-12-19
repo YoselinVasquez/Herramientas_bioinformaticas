@@ -101,8 +101,8 @@ mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298088/consensus.fasta \
 mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298082/consensus.fasta \
 -o ~/Documentos/bioinfo/medaka_ERR13298082/mob_recon_out
 
-# VFDB
-## Ver genes de virulencia: VirulenceFactorDataBase (VFDB)
+# BLAST
+## Para buscar genes de virulencia con BLAST en VFDB.
 ## 1. Entrar a http://www.mgc.ac.cn/VFs/
 ## 2. Entrar a Default webpage accessible to all users worldwide
 ## 3. Download
@@ -111,5 +111,59 @@ mob_recon -i ~/Documentos/bioinfo/medaka_ERR13298082/consensus.fasta \
 ## Crear formatos FASTA del archivo descargado
 gzip -d VFDB_setB_nt.fas.gz 
 
-##  
+# 
+for dir in ~/Documentos/bioinfo/medaka_ERR*; do
+    echo "Procesando $dir..."
+    mkdir -p "$dir/VFDB_nt_out"
+    blastn -db VFDB_setB_nt.fas \
+    -query "$dir/consensus.fasta" \
+    -perc_identity 90 \
+    -outfmt 6 \
+    -num_threads 8 \
+    > "$dir/VFDB_nt_out/VFDB_nt_hits.tsv"
+done
+
+#  Limpiar el archivo de VFDB out con:
+for d in medaka_ERR13298048 medaka_ERR13298057 medaka_ERR13298082 medaka_ERR13298088 medaka_ERR13298122; do   awk -F'\t' '
+  {
+    split($2,a,"(");
+    print "'$d'" "\t" $1 "\t" a[1] "\t" $3 "\t" $4 "\t" $11 "\t" $12
+  }
+  ' $d/VFDB_nt_out/VFDB_nt_hits.tsv; done > VFDB_all_clean.tsv
+
+# Extraer el ID limpio de VFG.
+grep '^>' VFDB_setB_nt.fas | sed 's/>//' | awk '
+{
+    # extraer VFG ID limpio
+    split($1,a,"(")
+    vfg_id=a[1]
+
+    # buscar VF ID dentro del texto
+    vf_id=""
+    for(i=1;i<=NF;i++){
+        if($i ~ /^\(VF[0-9]+\)$/){
+            vf_id=$i
+        }
+    }
+
+    # imprimir columnas: VFG limpio, VF ID, descripción completa
+    print vfg_id "\t" vf_id "\t" $0
+}' > VFDB_setB_id_mapping_clean.tsv
+
+# Ordenar los archivos 
+sort -k3,3 VFDB_all_clean.tsv > VFDB_all_clean_sorted.tsv
+sort -k1,1 VFDB_setB_id_mapping_clean.tsv > VFDB_setB_id_mapping_sorted.tsv
+
+# Hacer el join usando VFG ID:
+join -t $'\t' -1 3 -2 1 VFDB_all_clean_sorted.tsv VFDB_setB_id_mapping_sorted.tsv > VFDB_virulencia_mapeada.tsv
+
+
+
+
+
+
+
+
+
+
 
